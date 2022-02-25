@@ -1,0 +1,15 @@
+[package]
+name = "scomp"
+version = "0.2.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = "0.4.19"
+clap = "3.1.0"
+log = "0.4.14"
+log4rs = "1.0.0"
+mysql = "*"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.79"
