@@ -34,8 +34,8 @@ fn main() -> Result<()> {
 
 /// Create command line arguments
 fn command_args<'help>() -> Command<'help> {
-    Command::new("scomp - Schema comparism for MySQL")
-        .version("0.0.1")
+    Command::new("scomp - Schema comparison for MySQL")
+        .version("0.2.0")
         .author("Bruce Tsai")
         .args(&[
             Arg::new("config")
