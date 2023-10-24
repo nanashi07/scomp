@@ -114,6 +114,7 @@ fn collect_column_info(config: &ConnectInfo, conn: &mut PooledConn) -> Result<Ve
         params! { "schema" => config.schema.clone() },
         |mut row: mysql::Row| {
             trace!("{:?}", row);
+
             ColumnInfo {
                 country: config.country.clone(),
                 environment: config.environment.clone(),
@@ -123,13 +124,13 @@ fn collect_column_info(config: &ConnectInfo, conn: &mut PooledConn) -> Result<Ve
                 column_name: row.take("COLUMN_NAME").unwrap(),
                 column_type: row.take("COLUMN_TYPE").unwrap(),
                 data_type: row.take("DATA_TYPE").unwrap(),
-                text_max_length: row.take("CHARACTER_MAXIMUM_LENGTH").unwrap(),
-                text_octet_length: row.take("CHARACTER_OCTET_LENGTH").unwrap(),
-                num_precision: row.take("NUMERIC_PRECISION").unwrap(),
-                default_value: row.take("COLUMN_DEFAULT").unwrap(),
+                text_max_length: row.get_opt("CHARACTER_MAXIMUM_LENGTH").unwrap().unwrap_or(Option::None),
+                text_octet_length: row.get_opt("CHARACTER_OCTET_LENGTH").unwrap().unwrap_or(Option::None),
+                num_precision: row.get_opt("NUMERIC_PRECISION").unwrap().unwrap_or(Option::None),
+                default_value: row.get_opt("COLUMN_DEFAULT").unwrap().unwrap_or(Option::None),
                 nullable: row.take("IS_NULLABLE").unwrap(),
-                num_scale: row.take("NUMERIC_SCALE").unwrap(),
-                comment: row.take("COLUMN_COMMENT").unwrap(),
+                num_scale: row.get_opt("NUMERIC_SCALE").unwrap().unwrap_or(Option::None),
+                comment: row.get_opt("COLUMN_COMMENT").unwrap().unwrap_or(Option::None),
 
                 display: Option::None,
             }

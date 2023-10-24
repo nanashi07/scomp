@@ -1,9 +1,10 @@
 [package]
 name = "scomp"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# cross build: https://github.com/messense/homebrew-macos-cross-toolchains
 
 [dependencies]
 chrono = "0.4.19"
